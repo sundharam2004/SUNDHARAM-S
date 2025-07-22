@@ -1,0 +1,28 @@
+class MyThread extends Thread {
+    String name;
+
+    MyThread(String name) {
+        this.name = name;
+    }
+
+    public void run() {
+        for (int i = 1; i <= 4; i++) {
+            System.out.println(name + " iterate: " + i);
+            try {
+                Thread.sleep((int)(Math.random() * 100));
+            } catch (InterruptedException e) {
+                System.out.println("Interrupted: " + name);
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread("Thread One");
+        MyThread t2 = new MyThread("Thread Two");
+
+        t1.start();
+        t2.start();
+    }
+}
